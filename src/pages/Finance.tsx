@@ -70,7 +70,7 @@ export function FinancePage({ route }: { route: FinRoute }) {
           <Debts route={route} q={q} />
         ) : (
           <Card>
-            <Empty title="Финансовые данные скрыты для этой демонстрационной роли" text="Переключите роль на директора, РОПа, менеджера или бухгалтера." />
+            <Empty title="Финансовые данные скрыты для этой роли" text="Переключите роль на директора, РОПа, менеджера или бухгалтера." />
           </Card>
         )
       ) : (
@@ -93,7 +93,6 @@ function Debts({ route, q }: { route: FinRoute; q: string }) {
   return (
     <Card
       title={`Реестр обязательств · ${list.length}`}
-      aside={<span className="small muted">Условные финансовые документы. Реальный источник — уточняется с бухгалтерией/1С</span>}
     >
       <div className="summary-strip">
         <div>

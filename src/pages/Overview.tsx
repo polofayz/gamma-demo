@@ -72,7 +72,7 @@ export function Overview() {
         ))}
       </div>
 
-      <Card title="Направления" aside={<Badge tone="blue">Пример структуры</Badge>}>
+      <Card title="Направления">
         <TableWrap>
           <thead>
             <tr>
@@ -203,7 +203,7 @@ function MyQueue() {
   const tasks = data.tasks.filter((t) => roleEmployees.has(t.assigneeId) && t.state !== 'confirmed')
   const toCheck = data.tasks.filter((t) => roleEmployees.has(t.authorId) && isTaskAwaiting(t))
   return (
-    <Card title={`Рабочее место: ${ROLE_LABEL[myRole]}`} aside={<span className="small muted">Демонстрационная роль · {personTitle(data, actor.employeeId)}</span>} className="card-accent">
+    <Card title={`Рабочее место: ${ROLE_LABEL[myRole]}`} aside={<span className="small muted">{personTitle(data, actor.employeeId)}</span>} className="card-accent">
       <div className="queue">
         <div>
           <h3>Заказы на моём этапе · {orders.length}</h3>

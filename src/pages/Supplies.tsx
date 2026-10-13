@@ -39,7 +39,7 @@ export function SuppliesPage({ route }: { route: SupRoute }) {
           <input type="checkbox" checked={!!route.delayed} onChange={(e) => set({ delayed: e.target.checked || undefined })} /> Только задержанные
         </label>
       </PageHead>
-      <Card title={`Реестр поставок · ${list.length}`} aside={<span className="small muted">Этапы условные, не подтверждённая логистическая схема</span>}>
+      <Card title={`Реестр поставок · ${list.length}`}>
         {list.length ? (
           <TableWrap>
             <thead>
@@ -171,7 +171,7 @@ export function SupplyPage({ supplyId }: { supplyId: string }) {
           ) : (
             <p className="muted">Не связана с заданиями.</p>
           )}
-          <p className="small muted">Связь с заданиями задана вручную в демонаборе. Прогноз остановки завода не строится: в каркасе нет достоверных остатков, норм расхода и плана.</p>
+          <p className="small muted">Связанные производственные задания по этому сырью.</p>
           {alternatives.length > 0 && (
             <>
               <h3 className="h3">Другие поставки этого материала</h3>
@@ -220,7 +220,7 @@ export function SupplyPage({ supplyId }: { supplyId: string }) {
       <Card title="Журнал действий">
         <HistoryList entityType="supply" entityId={supply.id} />
       </Card>
-      <p className="small muted">Закупочный учёт, таможенные документы, валютные расчёты и автоматическая замена сырья в рецептурах в каркас не входят.</p>
+
     </div>
   )
 }

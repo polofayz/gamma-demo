@@ -1,6 +1,6 @@
 export const DEMO_DATE = '2026-10-12'
 export const STORAGE_KEY = 'gamma-director-demo-v1'
-export const STORAGE_VERSION = 2
+export const STORAGE_VERSION = 3
 
 export type Role =
   | 'director'

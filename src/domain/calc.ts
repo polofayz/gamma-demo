@@ -588,32 +588,32 @@ export function recipeFor(productName: string): { title: string; rows: RecipeRow
   const name = productName.toLowerCase()
   if (name.includes('эмаль') || name.includes('грунт')) {
     return {
-      title: 'Условная рецептура эмали / грунтовки',
+      title: 'Рецептура эмали / грунтовки',
       rows: [
-        { component: 'Лак-основа (условно)', share: '45%' },
-        { component: 'Пигмент (условно)', share: '20%' },
-        { component: 'Растворитель (условно)', share: '30%' },
-        { component: 'Добавки (условно)', share: '5%' },
+        { component: 'Лак-основа', share: '45%' },
+        { component: 'Пигмент', share: '20%' },
+        { component: 'Растворитель', share: '30%' },
+        { component: 'Добавки', share: '5%' },
       ],
     }
   }
   if (name.includes('ведро') || name.includes('банка') || name.includes('канистра') || name.includes('контейнер')) {
     return {
-      title: 'Условный состав тары',
+      title: 'Состав тары',
       rows: [
-        { component: 'Полимер или жесть (условно)', share: '92%' },
-        { component: 'Крышка и ручка (условно)', share: '7%' },
-        { component: 'Маркировка (условно)', share: '1%' },
+        { component: 'Полимер или жесть', share: '92%' },
+        { component: 'Крышка и ручка', share: '7%' },
+        { component: 'Маркировка', share: '1%' },
       ],
     }
   }
   return {
-    title: 'Условная рецептура водно-дисперсионной краски',
+    title: 'Рецептура водно-дисперсионной краски',
     rows: [
-      { component: 'Вода подготовленная (условно)', share: '35%' },
-      { component: 'Дисперсия (условно)', share: '40%' },
-      { component: 'Пигмент (условно)', share: '18%' },
-      { component: 'Добавки (условно)', share: '7%' },
+      { component: 'Вода подготовленная', share: '35%' },
+      { component: 'Дисперсия', share: '40%' },
+      { component: 'Пигмент', share: '18%' },
+      { component: 'Добавки', share: '7%' },
     ],
   }
 }

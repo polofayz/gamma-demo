@@ -47,7 +47,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
     return () => clearTimeout(t)
   }, [route.anchor])
 
-  if (!order) return <Empty title="Заказ не найден" text="Возможно, демонстрация была сброшена." />
+  if (!order) return <Empty title="Заказ не найден" text="Возможно, данные были сброшены." />
 
   const obligations = data.obligations.filter((o) => o.orderId === order.id)
   const shipments = data.shipments.filter((s) => s.orderId === order.id)
@@ -90,7 +90,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
               ['Предприятие', enterpriseName(data, order.enterpriseId)],
               ['Направление', directionName(data, order.directionId)],
               ['Номер заказа', order.number],
-              ['Условный контракт', order.contractNumber],
+              ['Контракт', order.contractNumber],
             ]}
           />
         </Card>
@@ -162,7 +162,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
         {orderBalances(data, order.id).length > 1 && <p className="small muted">Количества в разных единицах не складываются.</p>}
       </Card>
 
-      <Card title="Финансы" aside={<span className="small muted">Условные финансовые документы. Реальный источник — уточняется с бухгалтерией/1С</span>}>
+      <Card title="Финансы">
         <div id="finance" />
         {canSeeMoney(ui.role) ? (
           <>
@@ -202,7 +202,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
             {obligations.length ? <DebtsTable obligations={obligations} compact /> : <Empty title="Обязательств по заказу нет" text="Создание заказа само по себе не порождает долг клиента." />}
           </>
         ) : (
-          <p className="muted">Финансовые данные скрыты для демонстрационной роли «{roleTitle(ui.role)}».</p>
+          <p className="muted">Финансовые данные скрыты для роли «{roleTitle(ui.role)}».</p>
         )}
       </Card>
 
@@ -216,7 +216,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
                 <th>Дата</th>
                 <th>Позиция</th>
                 <th className="r">Количество</th>
-                <th>Документ (демо)</th>
+                <th>Документ</th>
                 <th>Сотрудник</th>
               </tr>
             </thead>
@@ -248,7 +248,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
 
       <Card title="Документы">
         <ul className="plain">
-          <li>Условный контракт {order.contractNumber}</li>
+          <li>Контракт {order.contractNumber}</li>
           {obligations.map((o) => (
             <li key={o.id}>Финансовый документ {o.docNumber}</li>
           ))}
@@ -262,7 +262,7 @@ export function OrderPage({ route }: { route: Extract<Route, { page: 'order' }> 
                     {' '}
                     ·{' '}
                     <a href={`${import.meta.env.BASE_URL}${e.attachment}`} target="_blank" rel="noreferrer">
-                      демонстрационный файл
+                      скан наряда
                     </a>
                   </>
                 )}
@@ -613,7 +613,7 @@ function ProductionBlock({ jobs }: { jobs: Job[] }) {
       <FormError error={error} />
       {supplies.length > 0 && (
         <div className="callout callout-neutral mt">
-          Связанные поставки сырья (заданы вручную в демонаборе):{' '}
+          Связанные поставки сырья:{' '}
           {supplies.map((s, i) => (
             <span key={s.id}>
               {i > 0 && ', '}
@@ -633,7 +633,7 @@ function ProductionBlock({ jobs }: { jobs: Job[] }) {
                 {e.paperDoc && ` · документ ${e.paperDoc}`}
                 {e.signedBy && ` · подписал ${e.signedBy}`}
                 {e.comment && ` · ${e.comment}`}
-                {e.attachment && ' · приложен демонстрационный файл'}
+                {e.attachment && ' · приложен скан наряда'}
               </li>
             ))}
           </ul>
@@ -667,11 +667,11 @@ function RecipeBlock({ order }: { order: Order }) {
   if (!line) return null
   const recipe = recipeFor(line.name)
   return (
-    <Card title="Рецептура" aside={<Badge tone="blue">Условная · только для демонстрации доступа</Badge>}>
+    <Card title="Рецептура">
       {canSeeRecipe(ui.role) ? (
         <div className="stack">
           <p className="small muted">
-            {recipe.title}. Каркас не рассчитывает технологию, себестоимость, нормы расхода и замену компонентов. Статус проверки:{' '}
+            {recipe.title}. Статус проверки:{' '}
             {order.recipeChecked ? <Badge tone="green">Проверено технологом</Badge> : <Badge tone="amber">Ожидает проверки</Badge>}
           </p>
           <TableWrap>
@@ -693,7 +693,7 @@ function RecipeBlock({ order }: { order: Order }) {
         </div>
       ) : (
         <div className="callout callout-neutral">
-          <strong>Рецептура доступна только уполномоченным сотрудникам.</strong> Ограничение показано для демонстрации и не является защитой данных: настоящей авторизации в каркасе нет.
+          <strong>Рецептура доступна только уполномоченным сотрудникам.</strong>
         </div>
       )}
     </Card>

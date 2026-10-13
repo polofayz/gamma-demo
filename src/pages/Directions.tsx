@@ -10,7 +10,7 @@ import {
   selectTasks,
 } from '../domain/calc'
 import type { DirTab, Route } from '../domain/types'
-import { Badge, Card, CountLink, Empty, Money, PageHead, Tabs } from '../ui/kit'
+import { Card, CountLink, Empty, Money, PageHead, Tabs } from '../ui/kit'
 import { AppealsTable, DebtsTable, OrdersTable, TasksTable } from '../ui/shared'
 
 export function DirectionsPage() {
@@ -18,10 +18,10 @@ export function DirectionsPage() {
   const rows = directionRows(data, ui.enterpriseId)
   return (
     <div className="page">
-      <PageHead title="Направления" sub={<>Пример структуры · {ui.enterpriseId === 'all' ? 'все предприятия' : enterpriseName(data, ui.enterpriseId)}</>} />
+      <PageHead title="Направления" sub={<>{ui.enterpriseId === 'all' ? 'все предприятия' : enterpriseName(data, ui.enterpriseId)}</>} />
       <div className="dir-grid">
         {rows.map((row) => (
-          <Card key={row.directionId} title={row.name} aside={<Badge tone="blue">Пример структуры</Badge>}>
+          <Card key={row.directionId} title={row.name}>
             <p className="muted small">РОП: {personTitle(data, row.ropId)}</p>
             <dl className="mini-stats">
               <div>
@@ -78,7 +78,7 @@ export function DirectionPage({ route }: { route: Extract<Route, { page: 'direct
         title={direction.name}
         sub={
           <>
-            {ent === 'all' ? 'Все предприятия' : enterpriseName(data, ent)} · РОП: {personTitle(data, direction.ropId)} · <Badge tone="blue">Пример структуры</Badge>
+            {ent === 'all' ? 'Все предприятия' : enterpriseName(data, ent)} · РОП: {personTitle(data, direction.ropId)}
           </>
         }
       />

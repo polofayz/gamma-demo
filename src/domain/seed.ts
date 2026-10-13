@@ -23,8 +23,8 @@ import type {
 import { STORAGE_VERSION } from './types'
 
 const enterprises: Enterprise[] = [
-  { id: 'ent-paint', name: 'Завод красок (условно)' },
-  { id: 'ent-pack', name: 'Завод тары (условно)' },
+  { id: 'ent-paint', name: 'Завод красок' },
+  { id: 'ent-pack', name: 'Завод тары' },
 ]
 
 const directions: Direction[] = [
@@ -53,12 +53,12 @@ const employees: Employee[] = [
 ]
 
 const clients: Client[] = [
-  { id: 'cl-1', name: 'ООО «СтройМонтаж» (демо)' },
-  { id: 'cl-2', name: 'ГУП «Дорстрой» (демо)' },
-  { id: 'cl-3', name: 'ООО «Фасад Сервис» (демо)' },
-  { id: 'cl-4', name: 'ООО «АгроПак» (демо)' },
-  { id: 'cl-5', name: 'ЧП «КраскиОпт» (демо)' },
-  { id: 'cl-6', name: 'ГУ «Водоканал» (демо)' },
+  { id: 'cl-1', name: 'ООО «СтройМонтаж»' },
+  { id: 'cl-2', name: 'ГУП «Дорстрой»' },
+  { id: 'cl-3', name: 'ООО «Фасад Сервис»' },
+  { id: 'cl-4', name: 'ООО «АгроПак»' },
+  { id: 'cl-5', name: 'ЧП «КраскиОпт»' },
+  { id: 'cl-6', name: 'ГУ «Водоканал»' },
 ]
 
 const workshops: Workshop[] = [
@@ -242,31 +242,31 @@ const calls: PhoneCall[] = [
 
 const supplies: Supply[] = [
   {
-    id: 'sup-1', number: 'ПС-201', material: 'Ксилол', supplier: 'Gulf Chem Trading (условно)', purchaserId: 'emp-buy', origin: 'import',
+    id: 'sup-1', number: 'ПС-201', material: 'Ксилол', supplier: 'Gulf Chem Trading', purchaserId: 'emp-buy', origin: 'import',
     qty: 20_000, unit: 'кг', receivedQty: 0, originalPlannedDate: '2026-09-20', plannedDate: '2026-10-05', stage: 'in_transit',
     location: 'Порт Шарджа, ожидание парома', lastInfo: 'Контейнер повторно выгружен с парома, новая дата отправки не подтверждена',
-    jobIds: ['job-2', 'job-10'], riskComment: 'Без ксилола цех №2 не может продолжить эмали. Прогноз остановки не рассчитывается: в каркасе нет остатков и норм расхода.',
+    jobIds: ['job-2', 'job-10'], riskComment: 'Без ксилола цех №2 не может продолжить эмали.',
   },
   {
-    id: 'sup-2', number: 'ПС-202', material: 'Диоксид титана (пигмент)', supplier: 'Shandong Pigment Co. (условно)', purchaserId: 'emp-buy', origin: 'import',
+    id: 'sup-2', number: 'ПС-202', material: 'Диоксид титана (пигмент)', supplier: 'Shandong Pigment Co.', purchaserId: 'emp-buy', origin: 'import',
     qty: 5000, unit: 'кг', receivedQty: 2000, originalPlannedDate: '2026-10-08', plannedDate: '2026-10-08', stage: 'partial',
     location: 'Остаток на таможенном складе', lastInfo: 'Получено 2 000 кг, остаток ждёт оформления',
     jobIds: ['job-10'], riskComment: 'Остаток нужен для эмали белой по заказу З-110.',
   },
   {
-    id: 'sup-3', number: 'ПС-203', material: 'Ксилол', supplier: 'ООО «ТашХим» (условно)', purchaserId: 'emp-buy2', origin: 'local',
+    id: 'sup-3', number: 'ПС-203', material: 'Ксилол', supplier: 'ООО «ТашХим»', purchaserId: 'emp-buy2', origin: 'local',
     qty: 5000, unit: 'кг', receivedQty: 0, originalPlannedDate: '2026-10-16', plannedDate: '2026-10-16', stage: 'ordered',
     location: 'Склад поставщика, Ташкент', lastInfo: 'Местная альтернатива: счёт выставлен, ждём подтверждения отгрузки',
     jobIds: ['job-2'], riskComment: 'Частично закрывает потребность, пока импортная поставка ПС-201 в пути.',
   },
   {
-    id: 'sup-4', number: 'ПС-204', material: 'Гранулы ПЭНД', supplier: 'ООО «ПолимерСнаб» (условно)', purchaserId: 'emp-buy2', origin: 'local',
+    id: 'sup-4', number: 'ПС-204', material: 'Гранулы ПЭНД', supplier: 'ООО «ПолимерСнаб»', purchaserId: 'emp-buy2', origin: 'local',
     qty: 8000, unit: 'кг', receivedQty: 8000, originalPlannedDate: '2026-10-03', plannedDate: '2026-10-03', stage: 'received',
     location: 'Склад сырья', lastInfo: 'Получено полностью',
     jobIds: ['job-7'], riskComment: '',
   },
   {
-    id: 'sup-5', number: 'ПС-205', material: 'Сиккатив', supplier: 'Поставщик из РФ (условно)', purchaserId: 'emp-buy', origin: 'import',
+    id: 'sup-5', number: 'ПС-205', material: 'Сиккатив', supplier: 'Поставщик из РФ', purchaserId: 'emp-buy', origin: 'import',
     qty: 300, unit: 'кг', receivedQty: 0, originalPlannedDate: '2026-10-20', plannedDate: '2026-10-20', stage: 'awaiting_dispatch',
     location: 'Склад поставщика', lastInfo: 'Ожидает отправки',
     jobIds: ['job-10'], riskComment: '',

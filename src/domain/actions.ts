@@ -148,7 +148,7 @@ export function techApprove(data: AppData, actor: Actor, orderId: string, commen
     if (order.stage !== 'technologist') return 'Заказ не на проверке технолога'
     order.recipeChecked = true
     moveStage(order, 'job_prep', 'emp-prod', addDays(DEMO_DATE, 1), 'technologist')
-    log(d, actor, 'order', order.id, 'Технолог подтвердил проверку', comment.trim() || 'Условная рецептура проверена')
+    log(d, actor, 'order', order.id, 'Технолог подтвердил проверку', comment.trim() || 'Рецептура проверена')
   })
 }
 
@@ -350,7 +350,7 @@ export function changeShipDue(data: AppData, actor: Actor, orderId: string, newD
     const order = getOrder(d, orderId)
     if (typeof order === 'string') return order
     if (!newDate) return 'Укажите новый срок отгрузки'
-    if (newDate < DEMO_DATE) return 'Новый срок не может быть раньше даты демонстрации'
+    if (newDate < DEMO_DATE) return 'Новый срок не может быть раньше текущей даты'
     if (!reason.trim()) return 'Укажите основание изменения условий (например, письмо клиента)'
     const old = order.shipDue
     order.shipDue = newDate
@@ -374,7 +374,7 @@ function createTaskIn(d: Draft, actor: Actor, input: TaskInput): string | Task {
   if (!input.title.trim()) return 'Опишите задачу'
   if (!input.assigneeId) return 'Выберите исполнителя'
   if (!input.due) return 'Укажите срок'
-  if (input.due < DEMO_DATE) return 'Срок не может быть раньше даты демонстрации'
+  if (input.due < DEMO_DATE) return 'Срок не может быть раньше текущей даты'
   const dup = guardOp(d, input.opKey)
   if (dup) return dup
   const number = `П-${d.tasks.length + 1}`
@@ -463,7 +463,7 @@ export function taskReturn(data: AppData, actor: Actor, taskId: string, comment:
     if (task.state !== 'submitted') return 'Вернуть можно только результат на проверке'
     if (!comment.trim()) return 'Укажите, что нужно доработать'
     if (!newDue) return 'Назначьте новый срок'
-    if (newDue < DEMO_DATE) return 'Новый срок не может быть раньше даты демонстрации'
+    if (newDue < DEMO_DATE) return 'Новый срок не может быть раньше текущей даты'
     task.previousDue = task.due
     task.due = newDue
     task.state = 'returned'
@@ -553,7 +553,7 @@ export function appealCreateOrder(
     if (!input.product.trim()) return 'Укажите продукцию'
     if (!(input.qty > 0)) return 'Количество должно быть больше нуля'
     if (!(input.price > 0)) return 'Цена должна быть больше нуля'
-    if (!input.shipDue || input.shipDue < DEMO_DATE) return 'Укажите срок отгрузки не раньше даты демонстрации'
+    if (!input.shipDue || input.shipDue < DEMO_DATE) return 'Укажите срок отгрузки не раньше текущей даты'
     const dup = guardOp(d, input.opKey)
     if (dup) return dup
     const num = 101 + d.orders.length

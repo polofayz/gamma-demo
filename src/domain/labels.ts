@@ -37,7 +37,7 @@ export const STAGE_LABEL: Record<Stage, string> = {
 export const STAGE_NEED: Record<Stage, string> = {
   new: 'Уточнить заказ и отправить его на согласование РОП',
   rop: 'Согласовать заказ или вернуть на корректировку',
-  technologist: 'Проверить заказ и условную рецептуру',
+  technologist: 'Проверить заказ и рецептуру',
   job_prep: 'Начать производственное задание',
   production: 'Зафиксировать выпуск по бумажному наряду',
   ready_transfer: 'Складу подтвердить принятое количество',

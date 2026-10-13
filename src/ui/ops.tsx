@@ -116,7 +116,7 @@ export function OutputModal({ jobId, onClose }: { jobId?: string; onClose: () =>
           <input className="input" value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Необязательно" />
         </Field>
         <label className="check">
-          <input type="checkbox" checked={attach} onChange={(e) => setAttach(e.target.checked)} /> Приложить демонстрационный файл (скан наряда)
+          <input type="checkbox" checked={attach} onChange={(e) => setAttach(e.target.checked)} /> Приложить скан наряда
         </label>
         <FormError error={s.error} />
         <div className="form-actions">
@@ -235,14 +235,14 @@ export function ShipModal({ orderId, onClose }: { orderId: string; onClose: () =
         </Field>
         {line && (
           <p className="small muted">
-            Доступно к отгрузке = принято на склад − уже отгружено = {formatQty(can, line.unit)}. Продажа со свободного склада и смешанные источники в каркасе не моделируются.
+            Доступно к отгрузке = принято на склад − уже отгружено = {formatQty(can, line.unit)}.
           </p>
         )}
         <div className="form-row">
           <Field label={`Количество${line ? `, ${line.unit}` : ''}`} hint="Частичная отгрузка уменьшает остаток">
             <input className="input" inputMode="decimal" value={qty} onChange={(e) => setQty(e.target.value)} autoFocus />
           </Field>
-          <Field label="Номер накладной (демо)">
+          <Field label="Номер накладной">
             <input className="input" value={docNumber} onChange={(e) => setDocNumber(e.target.value)} placeholder="например, ТТН-1200" />
           </Field>
         </div>

@@ -68,7 +68,7 @@ export function App() {
   )
   const setRole = useCallback((role: Role) => {
     setUi((s) => ({ ...s, role }))
-    setToastText(`Демонстрационная роль: ${ROLE_LABEL[role]}`)
+    setToastText(`Роль: ${ROLE_LABEL[role]}`)
   }, [])
 
   const dataRef = useRef(data)
@@ -107,7 +107,7 @@ export function App() {
     setData(createSeed())
     setUi((s) => ({ ...s, route: { page: 'overview' }, stack: [], role: 'director' }))
     setConfirmReset(false)
-    setToastText('Демонстрация сброшена к исходному набору')
+    setToastText('Данные сброшены к исходным')
   }
 
   return (
@@ -117,8 +117,8 @@ export function App() {
           <div className="brand">
             <span className="brand-mark">У</span>
             <div>
-              <strong>Каркас управления</strong>
-              <span>краски и тара · демо</span>
+              <strong>Система управления</strong>
+              <span>краски и тара</span>
             </div>
           </div>
           <nav>
@@ -157,11 +157,11 @@ export function App() {
               </select>
             </label>
             <div className="top-field">
-              <span>Дата демонстрации</span>
+              <span>Дата</span>
               <strong className="date-chip">{formatDate(DEMO_DATE)}</strong>
             </div>
             <label className="top-field">
-              <span>Демонстрационная роль</span>
+              <span>Роль</span>
               <select className="input" value={ui.role} onChange={(e) => setRole(e.target.value as Role)}>
                 {(Object.keys(ROLE_LABEL) as Role[]).map((r) => (
                   <option key={r} value={r}>
@@ -171,25 +171,21 @@ export function App() {
               </select>
             </label>
             <div className="top-spacer" />
-            <span className="demo-note">Демонстрация · Данные условные · Интеграции не подключены</span>
             <button className="btn btn-danger-ghost" onClick={() => setConfirmReset(true)}>
-              Сбросить демонстрацию
+              Сбросить данные
             </button>
           </header>
 
           <main className="content">
             <Page route={ui.route} />
           </main>
-          <footer className="foot">
-            Демонстрация · Данные условные · Интеграции не подключены. Переключатель роли иллюстрирует будущие рабочие места и не заменяет авторизацию.
-          </footer>
         </div>
       </div>
 
       {taskDraft && <TaskFormModal draft={taskDraft} onClose={() => setTaskDraft(null)} />}
       {confirmReset && (
-        <Modal title="Сбросить демонстрацию?" onClose={() => setConfirmReset(false)}>
-          <p>Все действия, выполненные во время показа, будут удалены. Вернётся исходный демонстрационный набор на {formatDate(DEMO_DATE)}.</p>
+        <Modal title="Сбросить данные?" onClose={() => setConfirmReset(false)}>
+          <p>Все внесённые действия будут удалены. Вернутся исходные данные на {formatDate(DEMO_DATE)}.</p>
           <div className="form-actions">
             <button className="btn" onClick={() => setConfirmReset(false)}>
               Отмена

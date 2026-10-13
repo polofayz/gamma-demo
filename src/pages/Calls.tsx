@@ -57,7 +57,7 @@ export function CallsPage({ route }: { route: CallsRoute }) {
 
   return (
     <div className="page">
-      <PageHead title="Звонки и обращения" sub={`Период: ${PERIOD} · реальная телефония не подключена`}>
+      <PageHead title="Звонки и обращения" sub={`Период: ${PERIOD}`}>
         <Search value={q} onChange={setQ} placeholder="Номер или клиент" />
         <select className="input" value={route.directionId ?? ''} onChange={(e) => set({ directionId: e.target.value || undefined })}>
           <option value="">Все направления</option>
@@ -218,7 +218,7 @@ export function AppealPage({ appealId }: { appealId: string }) {
             ]}
           />
           <p className="small muted">
-            Обработанным в демонстрации считается обращение с содержательным результатом («удалось связаться» или «вопрос решён»). Реальную политику закрытия нужно согласовать.
+            Обработанным считается обращение с содержательным результатом («удалось связаться» или «вопрос решён»).
           </p>
         </Card>
         <Card title={`Связанные звонки · ${calls.length}`}>
@@ -234,8 +234,8 @@ export function AppealPage({ appealId }: { appealId: string }) {
             ))}
           </ul>
           <div className="row-gap mt">
-            <AfterConnect label="Прослушать запись" reason="Телефония не подключена, файлов записи в демонстрации нет. Источник (АТС, мобильные) уточняется." />
-            <AfterConnect label="ИИ-анализ разговора" reason="Отдельная возможная опция, не входит в базовый каркас." />
+            <AfterConnect label="Прослушать запись" reason="Запись разговора появится после подключения телефонии." />
+            <AfterConnect label="ИИ-анализ разговора" reason="Анализ разговора появится после подключения." />
           </div>
         </Card>
       </div>

@@ -224,17 +224,6 @@ a {
   flex: 1;
 }
 
-.demo-note {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--amber);
-  background: var(--amber-soft);
-  border: 1px solid #ecd9a8;
-  padding: 6px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
 .menu-btn {
   display: none;
 }
@@ -242,13 +231,6 @@ a {
 .content {
   padding: 22px 24px 40px;
   flex: 1;
-}
-
-.foot {
-  padding: 12px 24px 20px;
-  font-size: 12px;
-  color: var(--ink-3);
-  border-top: 1px solid var(--line);
 }
 
 .page {
@@ -1208,12 +1190,6 @@ details summary {
   font-weight: 600;
   color: var(--accent);
   margin-bottom: 8px;
-}
-
-@media (max-width: 1100px) {
-  .demo-note {
-    white-space: normal;
-  }
 }
 
 @media (max-width: 900px) {

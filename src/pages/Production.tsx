@@ -34,7 +34,7 @@ export function ProductionPage({ route }: { route: ProdRoute }) {
 
   return (
     <div className="page">
-      <PageHead title="Производство и передача на склад" sub={`Цехов в демонстрации: ${workshops.length}. У начальника производства 11 цехов — список расширяется без переделки экрана.`}>
+      <PageHead title="Производство и передача на склад" sub={`Цехов: ${workshops.length}`}>
         <select className="input" value={route.workshopId ?? ''} onChange={(e) => set({ workshopId: e.target.value || undefined })}>
           <option value="">Все цеха</option>
           {workshops.map((w) => (
