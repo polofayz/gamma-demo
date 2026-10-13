@@ -465,7 +465,7 @@ function StageActions({ order }: { order: Order }) {
     const toReceive = jobs.filter((j) => availableToReceive(data, j.id) > 0)
     const inWork = jobs.filter((j) => j.state === 'in_progress')
     const paused = jobs.filter((j) => j.state === 'paused' || j.state === 'waiting')
-    if (role === 'production_head' && stage === 'production') {
+    if ((role === 'production_head' || role === 'director') && stage === 'production') {
       body = (
         <div className="actions">
           {inWork.map((j) => (
@@ -480,7 +480,7 @@ function StageActions({ order }: { order: Order }) {
           ))}
         </div>
       )
-    } else if (role === 'warehouse' && toReceive.length) {
+    } else if ((role === 'warehouse' || role === 'director') && toReceive.length) {
       body = (
         <div className="actions">
           {toReceive.map((j) => (
@@ -536,6 +536,8 @@ function ProductionBlock({ jobs }: { jobs: Job[] }) {
   const [receive, setReceive] = useState<Job | null>(null)
   const startJob = useStartJob()
   const [error, setError] = useState<string | null>(null)
+  const canProduce = ui.role === 'production_head' || ui.role === 'director'
+  const canReceive = ui.role === 'warehouse' || ui.role === 'director'
   const events = data.prodEvents.filter((e) => jobs.some((j) => j.id === e.jobId)).sort((a, b) => b.at.localeCompare(a.at))
   const supplies = data.supplies.filter((s) => s.jobIds.some((id) => jobs.some((j) => j.id === id)))
   return (
@@ -579,7 +581,7 @@ function ProductionBlock({ jobs }: { jobs: Job[] }) {
                   </td>
                   <td>{job.delayReason ?? <span className="muted">—</span>}</td>
                   <td className="nowrap">
-                    {ui.role === 'production_head' && job.state === 'in_progress' && (
+                    {canProduce && job.state === 'in_progress' && (
                       <>
                         <button className="btn btn-sm btn-primary" onClick={() => setOutput(job.id)}>
                           Выпуск
@@ -589,12 +591,12 @@ function ProductionBlock({ jobs }: { jobs: Job[] }) {
                         </button>
                       </>
                     )}
-                    {ui.role === 'production_head' && job.state === 'paused' && (
+                    {canProduce && job.state === 'paused' && (
                       <button className="btn btn-sm" onClick={() => setError(startJob(job))}>
                         Возобновить
                       </button>
                     )}
-                    {ui.role === 'warehouse' && diff > 0 && (
+                    {canReceive && diff > 0 && (
                       <button className="btn btn-sm btn-primary" onClick={() => setReceive(job)}>
                         Принять на склад
                       </button>

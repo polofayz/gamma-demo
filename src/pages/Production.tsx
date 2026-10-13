@@ -29,8 +29,8 @@ export function ProductionPage({ route }: { route: ProdRoute }) {
     return true
   })
   const pending = jobs.filter((j) => producedQty(data, j.id) - acceptedQty(data, j.id) > 1e-9)
-  const isHead = ui.role === 'production_head'
-  const isWh = ui.role === 'warehouse'
+  const isHead = ui.role === 'production_head' || ui.role === 'director'
+  const isWh = ui.role === 'warehouse' || ui.role === 'director'
 
   return (
     <div className="page">
@@ -59,7 +59,7 @@ export function ProductionPage({ route }: { route: ProdRoute }) {
       </PageHead>
 
       <p className="paper-note">Подробные операции цеха остаются на бумаге. В системе фиксируются события и результат.</p>
-      {!isHead && !isWh && <NeedRole roles={['production_head', 'warehouse']} text="Директор видит, где находится заказ. Ввод результата и приёмку выполняют рабочие места." />}
+      {!isHead && !isWh && <NeedRole roles={['production_head', 'warehouse']} text="Здесь видно, где находится заказ. Ввод результата и приёмку выполняют рабочие места." />}
 
       <div className="ws-strip">
         {workshops.map((w) => {

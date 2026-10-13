@@ -190,7 +190,7 @@ export function createJobs(data: AppData, actor: Actor, input: { orderId: string
 
 export function startJob(data: AppData, actor: Actor, jobId: string, opKey: string) {
   return mutate(data, (d) => {
-    const err = deny(actor, ['production_head'])
+    const err = deny(actor, ['production_head', 'director'])
     if (err) return err
     const job = byId(d.jobs, jobId)
     if (!job) return 'Задание не найдено'
@@ -212,7 +212,7 @@ export function startJob(data: AppData, actor: Actor, jobId: string, opKey: stri
 
 export function pauseJob(data: AppData, actor: Actor, jobId: string, reason: string) {
   return mutate(data, (d) => {
-    const err = deny(actor, ['production_head'])
+    const err = deny(actor, ['production_head', 'director'])
     if (err) return err
     const job = byId(d.jobs, jobId)
     if (!job) return 'Задание не найдено'
@@ -241,7 +241,7 @@ export interface OutputInput {
 
 export function recordOutput(data: AppData, actor: Actor, input: OutputInput) {
   return mutate(data, (d) => {
-    const err = deny(actor, ['production_head'])
+    const err = deny(actor, ['production_head', 'director'])
     if (err) return err
     const job = byId(d.jobs, input.jobId)
     if (!job) return 'Выберите задание'
@@ -280,7 +280,7 @@ export function recordOutput(data: AppData, actor: Actor, input: OutputInput) {
 
 export function receiveToWarehouse(data: AppData, actor: Actor, input: { jobId: string; qty: number; docNumber: string; comment: string; opKey: string }) {
   return mutate(data, (d) => {
-    const err = deny(actor, ['warehouse'])
+    const err = deny(actor, ['warehouse', 'director'])
     if (err) return err
     const job = byId(d.jobs, input.jobId)
     if (!job) return 'Задание не найдено'
